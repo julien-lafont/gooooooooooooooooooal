@@ -1,0 +1,16 @@
+/* FAKE */
+
+#countries li {
+  display: inline-block;
+  width: 250px;
+  margin: 0 0 10px 0;
+  cursor: pointer
+}
+
+#countries li.selected {
+  background-color: yellow
+}
+
+.state {
+  display: none
+}
