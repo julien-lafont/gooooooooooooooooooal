@@ -10,9 +10,9 @@ var Team = function(json) {
    * List all players in the team
    * @return Array[Player]
    */
-  this.players = _.map(json.players, function(player, index) {
+  this.players = _.map(json.players, _.bind(function(player, index) {
     return new Player(player, index, this.country)
-  })
+  }, this))
 
   /**
    * List player positions

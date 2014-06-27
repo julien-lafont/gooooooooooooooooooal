@@ -57,3 +57,13 @@
   border: 1px solid black;
   z-index:0;
 }
+
+#ball {
+  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+  background-image: url('http://frpic.com/vectors/soccer-ball-vector/soccer-ball-vector.png');
+  background-size: 100%;
+  position: absolute;
+  z-index: 10000000;
+}

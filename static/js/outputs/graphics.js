@@ -1,16 +1,5 @@
 var GraphicsOut = function() {
-      this.fieldEl = $("#field")
-}
-
-GraphicsOut.prototype.update = function(data, action, events, step) {
-
-}
-
-GraphicsOut.prototype.drawBall = function(data, action, events, step) {
-
-}
-
-GraphicsOut.prototype.leftTeamPos = [
+  this.leftTeamPos = [
     {x: 0.5, y: 3},
     {x: 2, y: 2},
     {x: 2, y: 3},
@@ -24,7 +13,7 @@ GraphicsOut.prototype.leftTeamPos = [
     {x: 7, y: 4},
     ]
 
-GraphicsOut.prototype.rightTeamPos = [
+  this.rightTeamPos = [
     {x: 9.5, y: 3},
     {x: 8, y: 2},
     {x: 8, y: 3},
@@ -36,8 +25,61 @@ GraphicsOut.prototype.rightTeamPos = [
     {x: 3, y: 2},
     {x: 3, y: 3},
     {x: 3, y: 4},
-    ]
+  ]
 
+  // field is 10 x 6
+  this.leftTeamPos = _.map(this.leftTeamPos, function(e) {
+    return {x: e.x/10, y: e.y/6}
+  })
+  this.leftTeamPos = _.map(this.leftTeamPos, function(e) {
+    //console.log( { x: GraphicsOut.prototype.fieldW*e.x, y: GraphicsOut.prototype.fieldH*e.y })
+    return {
+      x: GraphicsOut.prototype.fieldW*e.x,
+      y: GraphicsOut.prototype.fieldH*e.y
+    }
+  })
+  // field is 10 x 6
+  this.rightTeamPos = _.map(this.rightTeamPos, function(e) {
+    return {x: e.x/10, y: e.y/6}
+  })
+  this.rightTeamPos = _.map(this.rightTeamPos, function(e) {
+    //console.log( { x: GraphicsOut.prototype.fieldW*e.x, y: GraphicsOut.prototype.fieldH*e.y })
+    return {
+      x: GraphicsOut.prototype.fieldW*e.x,
+      y: GraphicsOut.prototype.fieldH*e.y
+    }
+  })
+
+}
+
+GraphicsOut.prototype.fieldEl = function() { return $("#field") }
+GraphicsOut.prototype.fieldW = 1000
+GraphicsOut.prototype.fieldH = 600
+
+GraphicsOut.prototype.update = function(data, action, events, step) {
+
+  this.drawBall(data.ball[0], data.ball[1])
+}
+
+GraphicsOut.prototype.drawBall = function(x, y) {
+  // position transformation
+  // 0,0 = Left Goal
+  // 1,X = Left Team Defense
+  // 2,X = Middle
+  // 3,X = Right Team Defense
+  // 4,0 = Right Goal
+
+  var conversion = {}
+  if(x == 0) conversion = this.leftTeamPos[0]
+  if(x == 1) conversion = this.leftTeamPos[1+y]
+  if(x == 2) conversion = this.leftTeamPos[4+y]
+  if(x == 3) conversion = this.leftTeamPos[8+y]
+  if(x == 4) conversion = this.leftTeamPos[11]
+
+  $("#ball").css('top', conversion.x);
+  $("#ball").css('left', conversion.y);
+
+}
 
 GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
   var pposA = _.flatten(posLeft)
@@ -48,19 +90,8 @@ GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
 }
 
 GraphicsOut.prototype.drawTeam = function(ppos, teamPos, teamName) {
-    // field is 10 x 6
-    var pxPos = _.map(teamPos, function(e) {
-      return {x: e.x/10, y: e.y/6}
-    })
-
-    var fieldW = 1000
-    var fieldH = 600
-
     for(i in ppos) {
-      var x = fieldW*pxPos[i].x
-      var y = fieldH*pxPos[i].y
-
-      this.fieldEl.append("<div class='player team"+teamName+"' style='left:"+x+"px;top:"+y+"px'><img src='"+ppos[i].general.picture+"' /></div>");
+      this.fieldEl().append("<div id='player_"+ppos[i].country.uid+"_"+ppos[i].uid+"' class='player team"+teamName+"' style='left:"+teamPos[i].x+"px;top:"+teamPos[i].y+"px'><img src='"+ppos[i].general.picture+"' /></div>");
     }
 }
 
