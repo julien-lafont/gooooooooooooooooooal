@@ -64,9 +64,9 @@ function updateAudioBar( time ) {
   var cycles = new Array;
   analyser.getByteTimeDomainData( buf );
 
-  var height = 620 - (autoCorrelate( buf, audioContext.sampleRate ) * 620);
+  var height = 600 - (autoCorrelate( buf, audioContext.sampleRate ) * 600);
 
-  if(height <= 620) {
+  if(height <= 600) {
     $(".audioVolume").css( "background-color", "yellow");
     aLotOfNoise = false;
   }

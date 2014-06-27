@@ -132,10 +132,6 @@ GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
   $("#fieldimg").css('height', GraphicsOut.prototype.fieldH+'px')
   $("#field").css('width', GraphicsOut.prototype.fieldW+'px')
   $("#field").css('height', GraphicsOut.prototype.fieldH+'px')
-  $(".audioBar").css('height', GraphicsOut.prototype.fieldH+'px')
-  $(".audioVolume").css('height', GraphicsOut.prototype.fieldH+'px')
-  $(".audioBar").css('left', GraphicsOut.prototype.fieldW+'px')
-  $(".audioVolume").css('left', GraphicsOut.prototype.fieldW+'px')
 
   this.posLeft = posLeft
   this.posRight = posRight
