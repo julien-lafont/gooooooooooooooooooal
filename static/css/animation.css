@@ -21,3 +21,15 @@
 #ball {
   -webkit-transition:top 0.5s, left 0.5s;
 }
+@-webkit-keyframes rotating {
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+}
