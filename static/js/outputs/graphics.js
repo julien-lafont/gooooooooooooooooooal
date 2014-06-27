@@ -115,8 +115,10 @@ GraphicsOut.prototype.drawBall = function(x, y) {
   if(x == 3) conversion = this.leftTeamPos[8+y]
   if(x == 4) conversion = this.leftTeamPos[11]
 
-  $("#ball").css('top', conversion.x);
-  $("#ball").css('left', conversion.y);
+  //console.log(conversion)
+
+  $("#ball").css('left', conversion.x);
+  $("#ball").css('top', conversion.y);
 
 }
 
