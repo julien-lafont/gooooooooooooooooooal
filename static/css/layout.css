@@ -270,6 +270,23 @@ body {
   right:0;
 }
 
+#scoreTeam0, #scoreTeam1 {
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  font-size: 21em;
+  opacity: 0.3;
+  color: #FFF;
+  left: 9%;
+  font-stretch: extra-condensed;
+  top: 99px;
+  line-height: 400px;
+  text-align: center;
+}
+
+#scoreTeam1 {
+  left: 520px
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */
