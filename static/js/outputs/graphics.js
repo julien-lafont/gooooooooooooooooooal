@@ -87,10 +87,10 @@ GraphicsOut.prototype.update = function(data, action, events, step, currentTeam)
   $(".player").removeClass('bluePulse')
 
   if(playersHavingBall.left != null)
-    $("#player_"+playersHavingBall.left.country.uid+"_"+playersHavingBall.left.uid).addClass('pulse bluePulse')
+    $("#player_"+playersHavingBall.left.country.uid+"_"+playersHavingBall.left.uid+" .player").addClass('pulse bluePulse')
 
   if(playersHavingBall.right != null)
-    $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid).addClass('pulse redPulse')
+    $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid+" .player").addClass('pulse redPulse')
 
   this.drawBall(data.ball[0], data.ball[1], currentTeam)
 }
@@ -139,7 +139,14 @@ GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
 
 GraphicsOut.prototype.drawTeam = function(ppos, teamPos, teamName) {
     for(i in ppos) {
-      this.fieldEl().append("<div id='player_"+ppos[i].country.uid+"_"+ppos[i].uid+"' class='player team"+teamName+"' style='left:"+teamPos[i].x+"px;top:"+teamPos[i].y+"px'><img src='"+ppos[i].general.picture+"' /></div>");
+      this.fieldEl().append(
+        "<div id='player_"+ppos[i].country.uid+"_"+ppos[i].uid+"' class='player_container' style='left:"+teamPos[i].x+"px;top:"+teamPos[i].y+"px'>"
+        +"  <div class='player team"+teamName+"'>"
+        +"    <img src='"+ppos[i].general.picture+"' />"
+        +"  </div>"
+        +"  <span class='player_name'>"+ ppos[i].general.name + "</span>"
+        +"</div>"
+      );
     }
 }
 

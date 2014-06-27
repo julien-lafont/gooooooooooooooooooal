@@ -210,8 +210,10 @@ body {
 }
 
 .player {
-  position: absolute;
   border-radius: 50px;
+}
+.player_container {
+  position: absolute;
 }
 .player.teamA {
   background-color: #2980b9;
@@ -223,6 +225,13 @@ body {
   border-radius: 50px;
   width: 50px;
   height: 50px;
+}
+.player_name {
+  color: white;
+  position: absolute;
+  font-size: small;
+  text-align:center;
+  line-height: 100%;
 }
 
 .audioBar {
