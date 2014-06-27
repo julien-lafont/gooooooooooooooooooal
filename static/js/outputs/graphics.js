@@ -127,6 +127,12 @@ GraphicsOut.prototype.drawBall = function(x, y, currentTeam) {
 }
 
 GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
+  // fix field size
+  $("#fieldimg").css('width', GraphicsOut.prototype.fieldW+'px')
+  $("#fieldimg").css('height', GraphicsOut.prototype.fieldH+'px')
+  $("#field").css('width', GraphicsOut.prototype.fieldW+'px')
+  $("#field").css('height', GraphicsOut.prototype.fieldH+'px')
+
   this.posLeft = posLeft
   this.posRight = posRight
 
