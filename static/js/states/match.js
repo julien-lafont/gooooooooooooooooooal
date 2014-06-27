@@ -35,7 +35,8 @@ var MatchState = function(stateManager, params) {
   this.outputs = [
     //new ConsoleOut(),
     new AudioOut(),
-    graphics
+    graphics,
+    new ScoreOut()
     // new WebglOut(),
     // new CommentatorOut(),
     // new MovieOut()

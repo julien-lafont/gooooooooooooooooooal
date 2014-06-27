@@ -91,7 +91,7 @@ var ActionShoot = new AttackAction(
       ball: [2, 2],
       nextMoveTeam: nextTeam(teamPlaying),
       events: [
-        { type: 'GOAL', player: player, country: player.country }
+        { type: 'GOAL', player: player, country: player.country, teamPlaying: teamPlaying}
       ]
     }
   },
