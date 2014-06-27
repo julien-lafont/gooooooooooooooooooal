@@ -3,7 +3,6 @@ var Simulator = function() {
 }
 
 var nextTeam = function(current) {
-  console.log("nextTeam", current, (current+1)%2)
   return (current+1)%2
 }
 var moveBall = function(ball, teamPlaying) {
@@ -40,7 +39,6 @@ var AttackAction = function(name, condition, fight, win, fail) {
 var ActionShortPass = new AttackAction(
   'SHORT_PASS',
   function condition(player, ball_col, ball_line) {
-    console.log(arguments)
     return player.isDefender || player.isCentral
   },
   function fight(player, opponent) {

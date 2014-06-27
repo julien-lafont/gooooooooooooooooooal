@@ -33,7 +33,7 @@ var MatchState = function(stateManager, params) {
 
   // Outputs receiving game state
   this.outputs = [
-    new ConsoleOut(),
+    //new ConsoleOut(),
     new AudioOut(),
     graphics
     // new WebglOut(),
