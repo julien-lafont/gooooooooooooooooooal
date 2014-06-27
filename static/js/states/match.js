@@ -28,7 +28,15 @@ var MatchState = function(stateManager, params) {
 
   var graphics = new GraphicsOut()
 
-  graphics.drawPlayers(teams[0].team.positions, teams[1].team.positions)
+  // hacky reverse
+
+  var bteamReversed = $.extend(true, {}, teams[1].team)
+  var _oldAtt = bteamReversed.positions[3]
+  var _oldDef = bteamReversed.positions[1]
+  bteamReversed.positions[1] = _oldAtt
+  bteamReversed.positions[3] = _oldDef
+
+  graphics.drawPlayers(teams[0].team.positions, bteamReversed.positions)
   graphics.drawFlags(teams[0].country.img, teams[1].country.img)
 
   // Outputs receiving game state
