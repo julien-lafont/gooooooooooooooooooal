@@ -104,6 +104,10 @@ MatchState.prototype.tick = function() {
   this.currentTeam = next.nextMoveTeam
   this.step++
 
+  var t = Math.floor(this.step/2)
+  var tmin = this.step%2 == 0 ? "00" : "30"
+  $("#time").html(t+":"+tmin)
+
   return _.some(next.events, {type: 'GOAL'})
 }
 

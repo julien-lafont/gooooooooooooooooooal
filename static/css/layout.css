@@ -267,8 +267,11 @@ body {
   width:60px;
   height: 37px;
 }
+#flagA {
+  left: 390px;
+}
 #flagB {
-  right:0;
+  right: 390px;
 }
 
 #scoreTeam0, #scoreTeam1 {
@@ -450,4 +453,14 @@ body {
 
 .clearfix {
     *zoom: 1;
+}
+
+#time {
+  color: white;
+  width: 100px;
+  text-align: center;
+  position: absolute;
+  left: 450px;
+  z-index: 1000000;
+  background-color: black;
 }
