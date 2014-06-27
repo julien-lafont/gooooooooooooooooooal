@@ -13,7 +13,7 @@ ScoreOut.prototype.update = function(data, action, events, step) {
           var hide = function(){
             $('#image').hide();
           }
-          setTimeout(hide, 500);  // 2 seconds
+          setTimeout(hide, 1500);  // 2 seconds
     }
 
     if(teamPlaying === '1'){
@@ -23,7 +23,7 @@ ScoreOut.prototype.update = function(data, action, events, step) {
         var hide = function(){
           $('#image').hide();
         }
-        setTimeout(hide, 500);  // 2 seconds
+        setTimeout(hide, 1500);  // 2 seconds
     }
   }
 }

@@ -24,7 +24,7 @@ var CONST = {
   SUCCESS_ENDURANCE: -10,
   FAIL_ENDURANCE: 0,
   GOAL_GAIN_RAGE: 20,
-  SHORT_PASS_RANDOMNESS: 0.4,
+  SHORT_PASS_RANDOMNESS: 0.5,
   SHOOT_RANDOMNESS: 0.2
 }
 
@@ -42,8 +42,13 @@ var ActionShortPass = new AttackAction(
     return player.isDefender || player.isCentral
   },
   function fight(player, opponent) {
-    var p1 = player.stat(STAT.SHORT_PASS) * player.overallPower()
+    /*var p1 = player.stat(STAT.SHORT_PASS) * player.overallPower()
     var p2 = opponent.stat(STAT.SHORT_PASS) * opponent.overallPower()
+    var p1 = p1 + p1 * (Math.random() > 0.5 ? 1 : -1) * _.random(0, CONST.SHORT_PASS_RANDOMNESS) // add some randomness
+
+    return p1 > p2*/
+    var p1 = player.stat(STAT.SHORT_PASS)
+    var p2 = opponent.stat(STAT.SHORT_PASS)
     var p1 = p1 + p1 * (Math.random() > 0.5 ? 1 : -1) * _.random(0, CONST.SHORT_PASS_RANDOMNESS) // add some randomness
 
     return p1 > p2
@@ -76,9 +81,13 @@ var ActionShoot = new AttackAction(
   'SHOOT',
   function condition(player, ball_col, ball_line) { return player.isAttacker },
   function fight(player, opponent) {
-    var p1 = player.stat(STAT.SHOOT) * player.overallPower()
-    var p2 = opponent.stat(STAT.SHOOT) * opponent.overallPower()
+    var p1 = player.stat(STAT.SHOOT) * 0.8
+    var p2 = opponent.stat(STAT.SHOOT)
     var p1 = p1 + p1 * (Math.random() > 0.5 ? 1 : -1) * _.random(0, CONST.SHOOT_RANDOMNESS) // add some randomness
+
+    /*var p1 = player.stat(STAT.SHOOT) * player.overallPower()
+    var p2 = opponent.stat(STAT.SHOOT) * opponent.overallPower()
+    var p1 = p1 + p1 * (Math.random() > 0.5 ? 1 : -1) * _.random(0, CONST.SHOOT_RANDOMNESS) // add some randomness*/
 
     return p1 > p2
   },
@@ -130,24 +139,36 @@ var LinePass = new AttackAction(
       events: []
     }
   },
-  function fail(player, opponent, ball, teamPlaying) {
-    opponent.rage = opponent.rage + CONST.SUCCESS_GAIN_RAGE
-    player.stamina = player.stamina + CONST.FAIL_ENDURANCE
-    opponent.stamina = opponent.stamina + CONST.SUCCESS_ENDURANCE
+  function fail(player, opponent, ball, teamPlaying) { }
+)
+
+var BackPass = new AttackAction(
+  'BACK_PASS',
+  function condition(player, ball_col, ball_line) {
+    return player.isCentral || player.isAttacker
+  },
+  function fight(player, opponent) { return true },
+  function win(player, opponent, ball, teamPlaying) {
+
+    var sens = (teamPlaying == 0) ? -1 : 1
+    var newLine = ball[1] + (Math.random() > 0.5) ? 1 : -1
+    if (newLine < 0 || (ball[0] == 2 && newLine > 3) || (ball[0] != 2 && newLine > 2)) newLine = 1
 
     return {
-      ball: ball,
-      nextMoveTeam: nextTeam(teamPlaying),
+      ball: [ball[0] + sens, newLine],
+      nextMoveTeam: teamPlaying,
       events: []
     }
-  }
+  },
+  function fail(player, opponent, ball, teamPlaying) { }
 )
 
 Simulator.prototype.next = function(data, teamPlaying, aLotOfNoise) {
   var attackActions = [
     ActionShortPass,
     ActionShoot,
-    LinePass
+    LinePass,
+    BackPass
   ]
   // var actionsList = [
   //   {

@@ -60,13 +60,28 @@ var MatchState = function(stateManager, params) {
 MatchState.prototype.run = function() {
   console.info("Run match " + this.blue.country.name + " VS " + this.red.country.name)
 
-  this.repeater = setInterval(_.bind(function() {
-    if (this.isMatchEnded()) {
-      this.finishMatch()
+  var that = this
+
+  var round = function() {
+    if (that.isMatchEnded()) {
+      that.finishMatch()
+      return null
     } else {
-      this.tick()
+      return that.tick()
     }
-  }, this), this.STEP_WAIT)
+  }
+
+  var infiniteRounds = function(timeout) {
+    setTimeout(function() {
+      var hasGoal = round()
+      if (hasGoal !== null) {
+        if (hasGoal) infiniteRounds(2000)
+        else infiniteRounds(500)
+      }
+    }, timeout)
+  }
+
+  infiniteRounds(0)
 
 }
 
@@ -88,6 +103,8 @@ MatchState.prototype.tick = function() {
   this.data = data
   this.currentTeam = next.nextMoveTeam
   this.step++
+
+  return _.some(next.events, {type: 'GOAL'})
 }
 
 MatchState.prototype.isMatchEnded = function() {
