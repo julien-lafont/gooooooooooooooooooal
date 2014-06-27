@@ -87,12 +87,17 @@ GraphicsOut.prototype.update = function(data, action, events, step) {
   $(".player").removeClass('bluePulse')
 
   if(playersHavingBall.left != null)
-    $("#player_"+playersHavingBall.left.country.uid+"_"+playersHavingBall.left.uid).addClass('pulse redPulse')
+    $("#player_"+playersHavingBall.left.country.uid+"_"+playersHavingBall.left.uid).addClass('pulse bluePulse')
 
   if(playersHavingBall.right != null)
-    $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid).addClass('pulse bluePulse')
+    $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid).addClass('pulse redPulse')
 
   this.drawBall(data.ball[0], data.ball[1])
+}
+
+GraphicsOut.prototype.drawFlags = function(left, right) {
+  $("#flagA").css('background-image', "url('"+left+"')");
+  $("#flagB").css('background-image', "url('"+right+"')");
 }
 
 GraphicsOut.prototype.drawBall = function(x, y) {

@@ -28,10 +28,10 @@
   border-radius: 50px;
 }
 .player.teamA {
-  background-color: #e74c3c;
+  background-color: #2980b9;
 }
 .player.teamB {
-  background-color: #2980b9;
+  background-color: #e74c3c;
 }
 .player img {
   border-radius: 50px;
@@ -66,4 +66,13 @@
   background-size: 100%;
   position: absolute;
   z-index: 10000000;
+}
+
+#flagA, #flagB {
+  position:absolute;
+  width:60px;
+  height: 37px;
+}
+#flagB {
+  right:0;
 }

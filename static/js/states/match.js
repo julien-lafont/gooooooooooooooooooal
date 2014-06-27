@@ -29,6 +29,7 @@ var MatchState = function(stateManager, params) {
   var graphics = new GraphicsOut()
 
   graphics.drawPlayers(teams[0].team.positions, teams[1].team.positions)
+  graphics.drawFlags(teams[0].country.img, teams[1].country.img)
 
   // Outputs receiving game state
   this.outputs = [
