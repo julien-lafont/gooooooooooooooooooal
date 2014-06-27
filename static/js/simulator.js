@@ -21,10 +21,10 @@ var STAT = {
 
 var CONST = {
   SUCCESS_GAIN_RAGE: 10,
-  SUCCESS_ENDURANCE: -5,
-  FAIL_ENDURANCE: -10,
+  SUCCESS_ENDURANCE: -10,
+  FAIL_ENDURANCE: 0,
   GOAL_GAIN_RAGE: 20,
-  SHORT_PASS_RANDOMNESS: 0.2,
+  SHORT_PASS_RANDOMNESS: 0.4,
   SHOOT_RANDOMNESS: 0.2
 }
 
@@ -161,7 +161,7 @@ Simulator.prototype.next = function(data, teamPlaying, aLotOfNoise) {
   var success = action.fight(attacker, defender)
   var result = (success ? action.win : action.fail)(attacker, defender, ball, teamPlaying)
 
-  //console.log("TEAM " + teamPlaying + " move " + action.name +" is "+ success + "- Ball at position " + ball[0]+"/"+ball[1])
+  console.log("TEAM " + teamPlaying + " move " + action.name +" is "+ success + "- Ball " + ball[0]+"/"+ball[1] +" -> " + result.ball[0]+"/" + result.ball[1])
 
   // Prepare result
   var moveResult = {}

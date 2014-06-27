@@ -72,7 +72,7 @@ MatchState.prototype.tick = function() {
 
   // Send result to all outputs
   _.each(this.outputs, _.bind(function(output) {
-    output.update(data, action, events, this.step)
+    output.update(data, action, events, this.step, this.currentTeam)
   }, this))
 
   // Update internal state
