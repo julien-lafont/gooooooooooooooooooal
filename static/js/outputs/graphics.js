@@ -68,16 +68,16 @@ GraphicsOut.prototype.update = function(data, action, events, step, currentTeam)
 
   if(data.ball[0] == 0)       playersHavingBall.left = this.posLeft[0]
   else if(data.ball[0] == 1) {
-    playersHavingBall.left = this.posLeft[1][data.ball[1]-1]
-    playersHavingBall.right = this.posRight[3][data.ball[1]-1]
+    playersHavingBall.left = this.posLeft[1][data.ball[1]]
+    playersHavingBall.right = this.posRight[3][data.ball[1]]
   }
   else if(data.ball[0] == 2) {
-    playersHavingBall.left = this.posLeft[2][data.ball[1]-1]
-    playersHavingBall.right = this.posRight[2][data.ball[1]-1]
+    playersHavingBall.left = this.posLeft[2][data.ball[1]]
+    playersHavingBall.right = this.posRight[2][data.ball[1]]
   }
   else if(data.ball[0] == 3) {
-    playersHavingBall.left = this.posLeft[3][data.ball[1]-1]
-    playersHavingBall.right = this.posRight[1][data.ball[1]-1]
+    playersHavingBall.left = this.posLeft[3][data.ball[1]]
+    playersHavingBall.right = this.posRight[1][data.ball[1]]
   }
   else if(data.ball[0] == 4) playersHavingBall.right = this.posLeft[0]
 
@@ -113,9 +113,9 @@ GraphicsOut.prototype.drawBall = function(x, y, currentTeam) {
 
   //console.log(x, y, posList)
   if(x == 0) tIdx = currentTeam == 0 ? 0 : null
-  if(x == 1) tIdx = currentTeam == 0 ? 0+y : 7+y
-  if(x == 2) tIdx = currentTeam == 0 ? 3+y : 3+y
-  if(x == 3) tIdx = currentTeam == 0 ? 7+y : 0+y
+  if(x == 1) tIdx = currentTeam == 0 ? 1+y : 8+y
+  if(x == 2) tIdx = currentTeam == 0 ? 4+y : 4+y
+  if(x == 3) tIdx = currentTeam == 0 ? 8+y : 1+y
   if(x == 4) tIdx = currentTeam == 0 ? null : 0
 
   var conversion = posList[tIdx]
