@@ -40,6 +40,8 @@ var MatchState = function(stateManager, params) {
     // new TweetOut()
   ]
 
+  this.audioIn = new AudioIn()
+
   this.MAX_STEP = 180
   this.STEP_WAIT = 500 // ms
 }
@@ -60,7 +62,7 @@ MatchState.prototype.run = function() {
 MatchState.prototype.tick = function() {
 
   // Simulate the next move and return new data, action and striking events
-  var next = this.simulator.next(this.data, this.step % 2)
+  var next = this.simulator.next(this.data, this.step % 2, this.audioIn.fetch())
 
   var data = next.data
   var action = next.action

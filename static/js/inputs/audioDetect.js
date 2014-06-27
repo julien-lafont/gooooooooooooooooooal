@@ -4,6 +4,7 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext = new AudioContext();
 var sourceNode = null;
 var analyser = null;
+var aLotOfNoise = false;
 
 window.onload = function() {
   getUserMedia({audio:true}, gotStream);
@@ -56,15 +57,38 @@ function autoCorrelate( buf, sampleRate ) {
     rms += val*val;
   }
   rms = Math.sqrt(rms/SIZE);
+  return rms;
 }
 
 function updateAudioBar( time ) {
   var cycles = new Array;
   analyser.getByteTimeDomainData( buf );
 
-  autoCorrelate( buf, audioContext.sampleRate );
+  var height = 620 - (autoCorrelate( buf, audioContext.sampleRate ) * 620);
+
+  if(height <= 620) {
+    $(".audioVolume").css( "background-color", "yellow");
+    aLotOfNoise = false;
+  }
+  if(height <= 300) {
+    $(".audioVolume").css( "background-color", "orange");
+    aLotOfNoise = false;
+  }
+  if(height <= 100) {
+    $(".audioVolume").css( "background-color", "red");
+    aLotOfNoise = true;
+  }
+  $(".audioBar").css( "height", height + "px");
 
   if (!window.requestAnimationFrame)
     window.requestAnimationFrame = window.webkitRequestAnimationFrame;
   rafID = window.requestAnimationFrame( updateAudioBar );
+}
+
+var AudioIn = function() {
+
+}
+
+AudioIn.prototype.fetch = function() {
+  return aLotOfNoise;
 }

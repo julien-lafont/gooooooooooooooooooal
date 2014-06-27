@@ -38,3 +38,22 @@
   width: 50px;
   height: 50px;
 }
+
+.audioBar {
+  background-color: white;
+  width: 30px;
+  height: 620px;
+  position: absolute;
+  left: 1250px;
+  z-index:1;
+}
+
+.audioVolume {
+  background-color: yellow;
+  width: 30px;
+  height: 620px;
+  position: absolute;
+  left: 1249px;
+  border: 1px solid black;
+  z-index:0;
+}

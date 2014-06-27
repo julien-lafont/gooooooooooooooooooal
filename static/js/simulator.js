@@ -2,7 +2,7 @@ var Simulator = function() {
   // Simulator state (if needed)
 }
 
-Simulator.prototype.next = function(data, teamPlaying) {
+Simulator.prototype.next = function(data, teamPlaying, aLotOfNoise) {
   var actionsList = [
     {
       type: 'SHORT_PASS',
