@@ -43,11 +43,11 @@ GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
   var pposA = _.flatten(posLeft)
   var pposB = _.flatten(posRight)
 
-  this.drawTeam(pposA, this.leftTeamPos)
-  this.drawTeam(pposB, this.rightTeamPos)
+  this.drawTeam(pposA, this.leftTeamPos, "A")
+  this.drawTeam(pposB, this.rightTeamPos, "B")
 }
 
-GraphicsOut.prototype.drawTeam = function(ppos, teamPos) {
+GraphicsOut.prototype.drawTeam = function(ppos, teamPos, teamName) {
     // field is 10 x 6
     var pxPos = _.map(teamPos, function(e) {
       return {x: e.x/10, y: e.y/6}
@@ -60,7 +60,7 @@ GraphicsOut.prototype.drawTeam = function(ppos, teamPos) {
       var x = fieldW*pxPos[i].x
       var y = fieldH*pxPos[i].y
 
-      this.fieldEl.append("<div class='player' style='left:"+x+"px;top:"+y+"px'><img src='"+ppos[i].general.picture+"' /></div>");
+      this.fieldEl.append("<div class='player team"+teamName+"' style='left:"+x+"px;top:"+y+"px'><img src='"+ppos[i].general.picture+"' /></div>");
     }
 }
 

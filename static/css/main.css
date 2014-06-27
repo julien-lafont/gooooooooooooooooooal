@@ -25,8 +25,16 @@
 
 .player {
   position: absolute;
+  border-radius: 50px;
+}
+.player.teamA {
+  background-color: #e74c3c;
+}
+.player.teamB {
+  background-color: #2980b9;
 }
 .player img {
+  border-radius: 50px;
   width: 50px;
   height: 50px;
 }

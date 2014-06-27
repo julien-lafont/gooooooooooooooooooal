@@ -56,7 +56,6 @@ function autoCorrelate( buf, sampleRate ) {
     rms += val*val;
   }
   rms = Math.sqrt(rms/SIZE);
-  console.log(rms)
 }
 
 function updateAudioBar( time ) {
