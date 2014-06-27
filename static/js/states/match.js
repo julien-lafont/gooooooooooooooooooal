@@ -117,5 +117,5 @@ MatchState.prototype.isMatchEnded = function() {
 
 MatchState.prototype.finishMatch = function() {
   clearInterval(this.repeater)
-  this.stateManager.go(ScoreState, this.data.teams)
+  //this.stateManager.go(ScoreState, this.data.teams)
 }
