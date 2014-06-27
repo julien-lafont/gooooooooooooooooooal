@@ -59,7 +59,7 @@ GraphicsOut.prototype.fieldEl = function() { return $("#field") }
 GraphicsOut.prototype.fieldW = 1000
 GraphicsOut.prototype.fieldH = 600
 
-GraphicsOut.prototype.update = function(data, action, events, step) {
+GraphicsOut.prototype.update = function(data, action, events, step, currentTeam) {
 
   var playersHavingBall = {
     left: null,
@@ -68,16 +68,16 @@ GraphicsOut.prototype.update = function(data, action, events, step) {
 
   if(data.ball[0] == 0)       playersHavingBall.left = this.posLeft[0]
   else if(data.ball[0] == 1) {
-    playersHavingBall.left = this.posLeft[1][data.ball[1]]
-    playersHavingBall.right = this.posRight[3][data.ball[1]]
+    playersHavingBall.left = this.posLeft[1][data.ball[1]-1]
+    playersHavingBall.right = this.posRight[3][data.ball[1]-1]
   }
   else if(data.ball[0] == 2) {
-    playersHavingBall.left = this.posLeft[2][data.ball[1]]
-    playersHavingBall.right = this.posRight[2][data.ball[1]]
+    playersHavingBall.left = this.posLeft[2][data.ball[1]-1]
+    playersHavingBall.right = this.posRight[2][data.ball[1]-1]
   }
   else if(data.ball[0] == 3) {
-    playersHavingBall.left = this.posLeft[3][data.ball[1]]
-    playersHavingBall.right = this.posRight[1][data.ball[1]]
+    playersHavingBall.left = this.posLeft[3][data.ball[1]-1]
+    playersHavingBall.right = this.posRight[1][data.ball[1]-1]
   }
   else if(data.ball[0] == 4) playersHavingBall.right = this.posLeft[0]
 
@@ -92,7 +92,7 @@ GraphicsOut.prototype.update = function(data, action, events, step) {
   if(playersHavingBall.right != null)
     $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid).addClass('pulse redPulse')
 
-  this.drawBall(data.ball[0], data.ball[1])
+  this.drawBall(data.ball[0], data.ball[1], currentTeam)
 }
 
 GraphicsOut.prototype.drawFlags = function(left, right) {
@@ -100,7 +100,7 @@ GraphicsOut.prototype.drawFlags = function(left, right) {
   $("#flagB").css('background-image', "url('"+right+"')");
 }
 
-GraphicsOut.prototype.drawBall = function(x, y) {
+GraphicsOut.prototype.drawBall = function(x, y, currentTeam) {
   // position transformation
   // 0,0 = Left Goal
   // 1,X = Left Team Defense
@@ -108,13 +108,17 @@ GraphicsOut.prototype.drawBall = function(x, y) {
   // 3,X = Right Team Defense
   // 4,0 = Right Goal
 
-  var conversion = {}
-  if(x == 0) conversion = this.leftTeamPos[0]
-  if(x == 1) conversion = this.leftTeamPos[1+y]
-  if(x == 2) conversion = this.leftTeamPos[4+y]
-  if(x == 3) conversion = this.leftTeamPos[8+y]
-  if(x == 4) conversion = this.leftTeamPos[11]
+  var posList = currentTeam == 0 ? this.leftTeamPos : this.rightTeamPos
+  var tIdx = 0
 
+  //console.log(x, y, posList)
+  if(x == 0) tIdx = currentTeam == 0 ? 0 : null
+  if(x == 1) tIdx = currentTeam == 0 ? 0+y : 7+y
+  if(x == 2) tIdx = currentTeam == 0 ? 3+y : 3+y
+  if(x == 3) tIdx = currentTeam == 0 ? 7+y : 0+y
+  if(x == 4) tIdx = currentTeam == 0 ? null : 0
+
+  var conversion = posList[tIdx]
   //console.log(conversion)
 
   $("#ball").css('left', conversion.x);
