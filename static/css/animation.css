@@ -18,3 +18,6 @@
 .redPulse { -webkit-animation-name: redPulse; -webkit-animation-duration: 1s; }
 .bluePulse { -webkit-animation-name: bluePulse; -webkit-animation-duration: 1s; }
 
+#ball {
+  -webkit-transition:top 0.5s, left 0.5s;
+}
