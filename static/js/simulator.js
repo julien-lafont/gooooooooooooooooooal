@@ -81,7 +81,7 @@ var ActionShoot = new AttackAction(
   'SHOOT',
   function condition(player, ball_col, ball_line) { return player.isAttacker },
   function fight(player, opponent) {
-    var p1 = player.stat(STAT.SHOOT) * 0.8
+    var p1 = player.stat(STAT.SHOOT)
     var p2 = opponent.stat(STAT.SHOOT)
     var p1 = p1 + p1 * (Math.random() > 0.5 ? 1 : -1) * _.random(0, CONST.SHOOT_RANDOMNESS) // add some randomness
 

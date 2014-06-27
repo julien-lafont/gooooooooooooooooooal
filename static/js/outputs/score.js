@@ -7,7 +7,7 @@ ScoreOut.prototype.update = function(data, action, events, step) {
   var teamPlaying = _.map(events, function(event) { return event.teamPlaying }).join(',')
   if (eventsType === 'GOAL') {
     if(teamPlaying === '0'){
-      $('#scoreTeam0').text(parseInt( $('#scoreTeam1').html()) + 1);
+      $('#scoreTeam0').text(parseInt( $('#scoreTeam0').html()) + 1);
           $('#image').show();
 
           var hide = function(){
