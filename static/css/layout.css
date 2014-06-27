@@ -75,18 +75,18 @@ body {
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 20px solid #E44d26;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 20px solid #E44D26;
 }
 
 .header-container,
 .footer-container,
 .main aside {
-    background: #f16529;
+    background: #F16529;
 }
 
 .title {
@@ -112,7 +112,7 @@ nav a {
     font-weight: bold;
 
     color: white;
-    background: #e44d26;
+    background: #E44D26;
 }
 
 nav a:hover,
@@ -146,31 +146,110 @@ nav a:hover {
     padding: 20px 0;
 }
 
-/* ===============
-    ALL: IE Fixes
-   =============== */
-
-.ie7 .title {
-    padding-top: 20px;
-}
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(97, 97, 97);
+}
 
+.header-container .title {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 1.5em;
+  font-weight: 500;
+  text-align: center;
+  color: inherit;
+}
 
+.header-container {
+  background-color: rgb(185, 246, 202);
+  border-color: rgb(29, 233, 182);
+}
 
+.main-container {
+  background-color: rgb(255, 255, 141);
+}
 
+/* FAKE */
 
+#countries li {
+  display: inline-block;
+  width: 250px;
+  margin: 0 0 10px 0;
+  cursor: pointer
+}
 
+#countries li.selected {
+  background-color: yellow
+}
 
+.state {
+  display: none
+}
 
+#field {
+  background-image: url('http://www.dpaperwall.com/wp-content/uploads/2014/04/soccer-field-wallpaper-1.jpg');
+  background-size: 100%;
+  width: 1000px;
+  height: 620px;
+  position: absolute;
+}
 
+.player {
+  position: absolute;
+  border-radius: 50px;
+}
+.player.teamA {
+  background-color: #2980b9;
+}
+.player.teamB {
+  background-color: #e74c3c;
+}
+.player img {
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
 
+.audioBar {
+  background-color: white;
+  width: 30px;
+  height: 620px;
+  position: absolute;
+  left: 1250px;
+  z-index:1;
+}
 
+.audioVolume {
+  background-color: yellow;
+  width: 30px;
+  height: 620px;
+  position: absolute;
+  left: 1249px;
+  border: 1px solid black;
+  z-index:0;
+}
 
+#ball {
+  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+  background-image: url('http://frpic.com/vectors/soccer-ball-vector/soccer-ball-vector.png');
+  background-size: 100%;
+  position: absolute;
+  z-index: 10000000;
+}
 
+#flagA, #flagB {
+  position:absolute;
+  width:60px;
+  height: 37px;
+}
+#flagB {
+  right:0;
+}
 
 /* ==========================================================================
    Media Queries
@@ -198,17 +277,6 @@ nav a:hover {
         margin-right: 0;
     }
 
-/* ========================
-    INTERMEDIATE: IE Fixes
-   ======================== */
-
-    nav ul li {
-        display: inline;
-    }
-
-    .oldie nav a {
-        margin: 0 0.7%;
-    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -324,71 +392,4 @@ nav a:hover {
 
 .clearfix {
     *zoom: 1;
-}
-
-/* ==========================================================================
-   Print styles
-   ========================================================================== */
-
-@media print {
-    * {
-        background: transparent !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
 }
