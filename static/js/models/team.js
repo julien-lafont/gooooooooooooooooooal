@@ -38,8 +38,8 @@ Team.prototype.calculPositions =  function() {
       });
   return [
     orderedPlayers[0],
-    [ orderedPlayers[1], orderedPlayers[2], orderedPlayers[3], orderedPlayers[4] ],
-    [ orderedPlayers[5], orderedPlayers[6], orderedPlayers[7] ],
+    [ orderedPlayers[1], orderedPlayers[2], orderedPlayers[3]],
+    [ orderedPlayers[5], orderedPlayers[6], orderedPlayers[7], orderedPlayers[4]],
     [ orderedPlayers[8], orderedPlayers[9], orderedPlayers[10] ],
   ]
 }

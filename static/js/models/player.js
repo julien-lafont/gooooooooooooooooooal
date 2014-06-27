@@ -12,3 +12,7 @@ var Player = function(json, uid, country) {
   this.rage = 0       // Jauge de rage
   this.warning = 0    // Nombre de cartons
 }
+
+Player.prototype.stat = function(stat) {
+  return this.stats[stat] || 50
+}
