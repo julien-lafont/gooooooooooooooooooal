@@ -3,7 +3,8 @@ var MatchState = function(stateManager, params) {
   this.stateManager = stateManager
 
   this.blue = Country.get(params.opponents[0]).team()
-  this.red = Country.get(params.opponents[1]).team()
+  this.red = Country.get(params.opponents[1]).team().reverse()
+  this.currentTeam = 0
 
   var teams = _.map([this.blue, this.red], function(team) {
     return {
@@ -62,7 +63,7 @@ MatchState.prototype.run = function() {
 MatchState.prototype.tick = function() {
 
   // Simulate the next move and return new data, action and striking events
-  var next = this.simulator.next(this.data, this.step % 2, this.audioIn.fetch())
+  var next = this.simulator.next(this.data, this.currentTeam, this.audioIn.fetch())
 
   var data = next.data
   var action = next.action
@@ -75,6 +76,7 @@ MatchState.prototype.tick = function() {
 
   // Update internal state
   this.data = data
+  this.currentTeam = next.nextMoveTeam
   this.step++
 }
 
