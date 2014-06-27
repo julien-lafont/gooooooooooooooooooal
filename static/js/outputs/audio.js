@@ -7,7 +7,7 @@ AudioOut.prototype.update = function(data, action, events, step) {
   var eventsType = _.map(events, function(event) { return event.type }).join(',')
   if (//'speechSynthesis' in window &&
     eventsType === 'GOAL') {
-    var audio = new Audio('../sound/goal.mp3');
+    var audio = new Audio('./sound/goal.mp3');
     audio.play();
   //   var goalMsg = new SpeechSynthesisUtterance();
   //     goalMsg.text="Et c'est le but";
