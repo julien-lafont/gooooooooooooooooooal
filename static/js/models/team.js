@@ -32,10 +32,14 @@ var Team = function(json) {
 
 // TODO with real algo (cf specs vsi)
 Team.prototype.calculPositions =  function() {
+  var order = ["GK", "LB", "CB", "RB", "CDM", "LM", "RM", "CM", "CAM", "LW", "RW", "ST", "CF"],
+      orderedPlayers =  this.players.sort(function(player1, player2) {
+        return order.indexOf(player1.general.position) - order.indexOf(player2.general.position);
+      });
   return [
-    this.players[0],
-    [ this.players[1], this.players[2], this.players[3], this.players[4] ],
-    [ this.players[5], this.players[6], this.players[7] ],
-    [ this.players[8], this.players[9], this.players[10] ],
+    orderedPlayers[0],
+    [ orderedPlayers[1], orderedPlayers[2], orderedPlayers[3], orderedPlayers[4] ],
+    [ orderedPlayers[5], orderedPlayers[6], orderedPlayers[7] ],
+    [ orderedPlayers[8], orderedPlayers[9], orderedPlayers[10] ],
   ]
 }
