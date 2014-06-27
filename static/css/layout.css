@@ -205,6 +205,7 @@ body {
   width: 1000px;
   height: 620px;
   position: absolute;
+  z-index: 1;
 }
 
 .player {
@@ -286,6 +287,19 @@ body {
 
 #scoreTeam1 {
   left: 520px
+}
+
+#image {
+  display: none;
+  background-image: url('../images/goal.jpg');
+  background-size: 100%;
+  position: absolute;
+  height: 1000px;
+  width: 1000px;
+  left: 0;
+  top : 0;
+  background-repeat:no-repeat;
+  z-index: 10000022;
 }
 /* ==========================================================================
    Media Queries
