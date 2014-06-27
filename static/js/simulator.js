@@ -110,10 +110,44 @@ var ActionShoot = new AttackAction(
   }
 )
 
+var LinePass = new AttackAction(
+  'LINE_PASS',
+  function condition(player, ball_col, ball_line) {
+    return player.isDefender || player.isCentral || player.isAttacker
+  },
+  function fight(player, opponent) { return true },
+  function win(player, opponent, ball, teamPlaying) {
+    player.rage = player.rage + CONST.SUCCESS_GAIN_RAGE
+    player.stamina = player.stamina + 10
+    opponent.stamina = opponent.stamina + 10
+
+    var newLine = ball[1] + (Math.random() > 0.5) ? 1 : -1
+    if (newLine < 0 || (ball[0] == 2 && newLine > 3) || (ball[0] != 2 && newLine > 2)) newLine = 1
+
+    return {
+      ball: [ball[0], newLine],
+      nextMoveTeam: teamPlaying,
+      events: []
+    }
+  },
+  function fail(player, opponent, ball, teamPlaying) {
+    opponent.rage = opponent.rage + CONST.SUCCESS_GAIN_RAGE
+    player.stamina = player.stamina + CONST.FAIL_ENDURANCE
+    opponent.stamina = opponent.stamina + CONST.SUCCESS_ENDURANCE
+
+    return {
+      ball: ball,
+      nextMoveTeam: nextTeam(teamPlaying),
+      events: []
+    }
+  }
+)
+
 Simulator.prototype.next = function(data, teamPlaying, aLotOfNoise) {
   var attackActions = [
     ActionShortPass,
-    ActionShoot
+    ActionShoot,
+    LinePass
   ]
   // var actionsList = [
   //   {
