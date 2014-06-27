@@ -3,15 +3,36 @@ var Simulator = function() {
 }
 
 Simulator.prototype.next = function(data, teamPlaying) {
-  // Fake simulator
-  return {
-    data: data,
-    action : {
+  var actionsList = [
+    {
       type: 'SHORT_PASS',
       from: data.teams[0].team.players[0],
       to: data.teams[0].team.players[1],
       success: true
     },
+    {
+      type: 'SHOOT',
+      from: data.teams[0].team.players[0],
+      to: data.teams[0].team.players[1],
+      success: true
+    },
+    {
+      type: 'BACK_PASS',
+      from: data.teams[0].team.players[0],
+      to: data.teams[0].team.players[1],
+      success: true
+    },
+    {
+      type: 'LONG_PASS',
+      from: data.teams[0].team.players[0],
+      to: data.teams[0].team.players[1],
+      success: true
+    }
+  ]
+  // Fake simulator
+  return {
+    data: data,
+    action : actionsList[ Math.floor(Math.random() * actionsList.length) ],
     events: [
       {
         type: 'YELLOW_CARD',

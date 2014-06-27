@@ -28,6 +28,7 @@ var MatchState = function(stateManager, params) {
   // Outputs receiving game state
   this.outputs = [
     new ConsoleOut(),
+    new AudioOut()
     // new WebglOut(),
     // new CommentatorOut(),
     // new MovieOut()
