@@ -1,0 +1,20 @@
+@-webkit-keyframes redPulse {
+  from { background-color: #bc330d; -webkit-box-shadow: 0 0 20px #333; }
+  50% { background-color: #e33100; -webkit-box-shadow: 0 0 40px #e33100; }
+  to { background-color: #bc330d; -webkit-box-shadow: 0 0 20px #333; }
+}
+
+@-webkit-keyframes bluePulse {
+  from { background-color: #007d9a; -webkit-box-shadow: 0 0 20px #333; }
+  50% { background-color: #2daebf; -webkit-box-shadow: 0 0 40px #2daebf; }
+  to { background-color: #007d9a; -webkit-box-shadow: 0 0 20px #333; }
+}
+
+.pulse {
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite; 
+}
+
+.redPulse { -webkit-animation-name: redPulse; -webkit-animation-duration: 1s; }
+.bluePulse { -webkit-animation-name: bluePulse; -webkit-animation-duration: 1s; }
+

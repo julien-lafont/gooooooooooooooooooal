@@ -27,6 +27,9 @@ var GraphicsOut = function() {
     {x: 3, y: 4},
   ]
 
+  this.posLeft = {}
+  this.posRight = {}
+
   // field is 10 x 6
   this.leftTeamPos = _.map(this.leftTeamPos, function(e) {
     return {x: e.x/10, y: e.y/6}
@@ -58,6 +61,37 @@ GraphicsOut.prototype.fieldH = 600
 
 GraphicsOut.prototype.update = function(data, action, events, step) {
 
+  var playersHavingBall = {
+    left: null,
+    right: null
+  }
+
+  if(data.ball[0] == 0)       playersHavingBall.left = this.posLeft[0]
+  else if(data.ball[0] == 1) {
+    playersHavingBall.left = this.posLeft[1][data.ball[1]]
+    playersHavingBall.right = this.posRight[3][data.ball[1]]
+  }
+  else if(data.ball[0] == 2) {
+    playersHavingBall.left = this.posLeft[2][data.ball[1]]
+    playersHavingBall.right = this.posRight[2][data.ball[1]]
+  }
+  else if(data.ball[0] == 3) {
+    playersHavingBall.left = this.posLeft[3][data.ball[1]]
+    playersHavingBall.right = this.posRight[1][data.ball[1]]
+  }
+  else if(data.ball[0] == 4) playersHavingBall.right = this.posLeft[0]
+
+
+  $(".player").removeClass('pulse')
+  $(".player").removeClass('redPulse')
+  $(".player").removeClass('bluePulse')
+
+  if(playersHavingBall.left != null)
+    $("#player_"+playersHavingBall.left.country.uid+"_"+playersHavingBall.left.uid).addClass('pulse redPulse')
+
+  if(playersHavingBall.right != null)
+    $("#player_"+playersHavingBall.right.country.uid+"_"+playersHavingBall.right.uid).addClass('pulse bluePulse')
+
   this.drawBall(data.ball[0], data.ball[1])
 }
 
@@ -82,6 +116,9 @@ GraphicsOut.prototype.drawBall = function(x, y) {
 }
 
 GraphicsOut.prototype.drawPlayers = function(posLeft, posRight) {
+  this.posLeft = posLeft
+  this.posRight = posRight
+
   var pposA = _.flatten(posLeft)
   var pposB = _.flatten(posRight)
 
