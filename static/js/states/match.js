@@ -25,10 +25,15 @@ var MatchState = function(stateManager, params) {
   // Game simulator implementation
   this.simulator = new Simulator()
 
+  var graphics = new GraphicsOut()
+
+  graphics.drawPlayers(teams[0].team.positions, teams[1].team.positions)
+
   // Outputs receiving game state
   this.outputs = [
     new ConsoleOut(),
-    new AudioOut()
+    new AudioOut(),
+    graphics
     // new WebglOut(),
     // new CommentatorOut(),
     // new MovieOut()

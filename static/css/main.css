@@ -14,3 +14,19 @@
 .state {
   display: none
 }
+
+#field {
+  background-image: url('http://www.dpaperwall.com/wp-content/uploads/2014/04/soccer-field-wallpaper-1.jpg');
+  background-size: 100%;
+  width: 1000px;
+  height: 620px;
+  position: absolute;
+}
+
+.player {
+  position: absolute;
+}
+.player img {
+  width: 50px;
+  height: 50px;
+}
