@@ -111,6 +111,11 @@ GraphicsOut.prototype.drawBall = function(x, y, currentTeam) {
   var posList = currentTeam == 0 ? this.leftTeamPos : this.rightTeamPos
   var tIdx = 0
 
+  var delta = {
+    x : currentTeam == 0 ? 50 : -20,
+    y : 20
+  }
+
   //console.log(x, y, posList)
   if(x == 0) tIdx = currentTeam == 0 ? 0 : null
   if(x == 1) tIdx = currentTeam == 0 ? 1+y : 8+y
@@ -119,10 +124,9 @@ GraphicsOut.prototype.drawBall = function(x, y, currentTeam) {
   if(x == 4) tIdx = currentTeam == 0 ? null : 0
 
   var conversion = posList[tIdx]
-  //console.log(conversion)
 
-  $("#ball").css('left', conversion.x);
-  $("#ball").css('top', conversion.y);
+  $("#ball").css('left', conversion.x+delta.x);
+  $("#ball").css('top', conversion.y+delta.y);
 
 }
 
